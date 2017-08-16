@@ -3,7 +3,13 @@
 
   contentEl.innerHTML = "<h3>Results</h3>";
 
-  const iterations = 1000;
+  let iterations = 1000;
+  const search = window.location.search;
+  if (search) {
+    const newIters = search.split(/\?iterations\=/)[1];
+    iterations = newIters ? parseInt(newIters) : iterations;
+  }
+
   const NS_PER_SEC = 1e9;
   const NUMS = [...Array(parseInt(iterations)).keys()];
 
