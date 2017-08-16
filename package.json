@@ -5,11 +5,14 @@
   "author": "Ryan Roemer <ryan@loose-bits.com>",
   "license": "MIT",
   "scripts": {
-    "activate": "emsdk-portable/emsdk activate && source emsdk-portable/emsdk_env.sh && mkdir dist",
-    "build-c": "emsdk-portable/emscripten/*/emcc src/fib.c -o dist/fib.wasm -s WASM=1 -s SIDE_MODULE=1",
-    "build-c-prod": "yarn run build-c -- -02"
+    "clean": "rimraf dist",
+    "build": "mkdirp dist && wa compile -o dist/fib.wasm src/fib.c"
   },
   "dependencies": {
-    "pify": "^3.0.0"
+    "webassembly": "^0.11.0"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.1"
   }
 }

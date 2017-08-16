@@ -1,4 +1,6 @@
-int fibonacci(int n) {
+#include <webassembly.h>
+
+export int fibonacci(int n) {
   int a = 1;
   int b = 1;
 
