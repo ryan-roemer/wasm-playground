@@ -1,20 +1,12 @@
 WebAssembly Fun
 ===============
 
-## Installation
+Simple playground using the [`webassembly`](https://github.com/dcodeIO/webassembly) utility library.
 
-Get Emscripten:
-
-```sh
-$ curl -Os https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz
-$ tar zxvf emsdk-portable.tar.gz
-$ cd emsdk-portable
-$ ./emsdk update
-$ cd ..
-```
-
-From there, and on any new session, "activate" the build environment:
+## Build some WebAssembly!
 
 ```sh
-$ yarn run activate
+$ yarn install
+$ yarn run build      # builds src/fib.c -> dist/fib.wasm
+$ yarn run benchmark  # benchmarks src/fib.js vs. dist/fib.wasm
 ```

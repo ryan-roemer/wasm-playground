@@ -3,7 +3,7 @@
 const fibJs = require("../src/fib").fibonacci;
 
 const NS_PER_SEC = 1e9;
-const NUMS = [...Array(200).keys()];
+const NUMS = [...Array(1000).keys()];
 
 // Run benchmark against function.
 const benchmark = (fib) => {

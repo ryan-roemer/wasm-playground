@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "mkdirp dist && wa compile -o dist/fib.wasm src/fib.c"
+    "build": "mkdirp dist && wa compile -o dist/fib.wasm src/fib.c",
+    "benchmark": "node util/benchmark.js"
   },
   "dependencies": {
     "webassembly": "^0.11.0"
