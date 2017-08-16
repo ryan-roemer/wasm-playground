@@ -1,22 +1,27 @@
 "use strict";
+/**
+ * ```sh
+ * $ yarn run benchmark -- 10000
+ * ```
+ */
 
 const fibJs = require("../src/fib").fibonacci;
 
+const iterations = process.argv[2] || 2000;
 const NS_PER_SEC = 1e9;
-const NUMS = [...Array(1000).keys()];
+const NUMS = [...Array(parseInt(iterations)).keys()];
 
 // Run benchmark against function.
-const benchmark = (fib) => {
+const benchmark = (tag, fib) => {
   const time = process.hrtime();
 
+  let last;
   NUMS.forEach((num) => {
-    console.log(`fib(${num}) = ${fib(num)}`);
+    last = fib(num); // make sure result isn't thrown away.
   });
 
   const diff = process.hrtime(time);
-  console.log(`Elapsed: ${diff[0] * NS_PER_SEC + diff[1]} ns (${diff[0]} secs)`);
-
-  return diff;
+  return { diff, last };
 };
 
 require("webassembly")
@@ -24,13 +29,22 @@ require("webassembly")
   .then(mod => {
     const fibWasm = mod.exports.fibonacci;
 
-    console.log("Benchmark: WASM");
-    const diffWasm = benchmark(fibWasm);
+    console.log("Setup:");
+    console.log(`* Iterations: ${NUMS.length}`);
 
-    console.log("\n\n\nBenchmark: JS");
-    const diffJs = benchmark(fibJs);
-
-    console.log("\n\nFinal results:");
-    console.log(` * WASM: ${diffWasm[0] * NS_PER_SEC + diffWasm[1]} ns`);
-    console.log(` * JS:   ${diffJs[0] * NS_PER_SEC + diffJs[1]} ns`);
+    console.log("\n\nBenchmarks:");
+    [
+      ["WASM", fibWasm],
+      ["  JS", fibJs],
+      ["WASM", fibWasm],
+      ["  JS", fibJs]
+    ].forEach(pair => {
+      const [tag, fn] = pair;
+      const { diff, last } = benchmark(tag, fn);
+      console.log(` * ${tag}: ${diff[0] * NS_PER_SEC + diff[1]} ns (${diff[0]} secs)`);
+      console.log(`           last: ${last}`);
+    });
+  })
+  .catch(err => {
+    console.error(err);
   });
