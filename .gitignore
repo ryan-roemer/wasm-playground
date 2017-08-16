@@ -1,0 +1,19 @@
+.git
+.hg
+
+.DS_Store
+.project
+node_modules
+npm-debug.log*
+phantomjsdriver.log
+
+# Build
+dist
+*/dist
+build
+*/build
+coverage
+Procfile
+.lankrc*
+
+emsdk*

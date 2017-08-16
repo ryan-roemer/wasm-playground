@@ -1,0 +1,15 @@
+{
+  "name": "wasm-playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ryan Roemer <ryan@loose-bits.com>",
+  "license": "MIT",
+  "scripts": {
+    "activate": "emsdk-portable/emsdk activate && source emsdk-portable/emsdk_env.sh && mkdir dist",
+    "build-c": "emsdk-portable/emscripten/*/emcc src/fib.c -o dist/fib.wasm -s WASM=1 -s SIDE_MODULE=1",
+    "build-c-prod": "yarn run build-c -- -02"
+  },
+  "dependencies": {
+    "pify": "^3.0.0"
+  }
+}
