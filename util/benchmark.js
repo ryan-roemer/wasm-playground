@@ -7,7 +7,7 @@
 
 const fibJs = require("../src/fib").fibonacci;
 
-const iterations = process.argv[2] || 2000;
+const iterations = process.argv[2] || 1000;
 const NS_PER_SEC = 1e9;
 const NUMS = [...Array(parseInt(iterations)).keys()];
 
@@ -42,7 +42,7 @@ require("webassembly")
       const [tag, fn] = pair;
       const { diff, last } = benchmark(tag, fn);
       console.log(` * ${tag}: ${diff[0] * NS_PER_SEC + diff[1]} ns (${diff[0]} secs)`);
-      console.log(`           last: ${last}`);
+      console.log(`         last: ${last}`);
     });
   })
   .catch(err => {

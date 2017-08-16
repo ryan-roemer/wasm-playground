@@ -11,6 +11,8 @@ function fibonacci(n) {
   return b;
 }
 
-module.exports = {
-  fibonacci
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    fibonacci
+  };
+}
