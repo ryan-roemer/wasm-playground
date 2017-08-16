@@ -34,7 +34,6 @@
 
       contentEl.innerHTML += `<ul><strong>Iterations</strong>: ${NUMS.length}</ul>`;
 
-      console.log("\n\nBenchmarks:");
       [
         ["WASM", fibWasm],
         ["  JS", fibJs],
