@@ -1,11 +1,11 @@
 #include <webassembly.h>
 
-export int fibonacci(int n) {
-  int a = 1;
-  int b = 1;
+export double fibonacci(double n) {
+  double a = 1;
+  double b = 1;
 
   while (n-- > 1) {
-    int t = a;
+    double t = a;
     a = b;
     b += t;
   }
