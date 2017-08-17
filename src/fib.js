@@ -11,8 +11,18 @@ function fibonacci(n) {
   return b;
 }
 
+function benchmark(num) {
+  var last = 0;
+  for (var i = 0; i < num; i++) {
+    last = fibonacci(i);
+  }
+
+  return last;
+}
+
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
-    fibonacci
+    fibonacci,
+    benchmark
   };
 }

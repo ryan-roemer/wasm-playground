@@ -12,3 +12,12 @@ export double fibonacci(double n) {
 
   return b;
 }
+
+export double benchmark(double num) {
+  double last = 0;
+  for (double i = 0; i < num; i++) {
+    last = fibonacci(i);
+  }
+
+  return last;
+}
